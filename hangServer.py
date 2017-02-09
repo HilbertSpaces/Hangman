@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, jsonify
+from flask import Flask, render_template, session, jsonify,redirect,abort
 from random import randint
 app= Flask(__name__)
 #set secret key for sessions
@@ -29,13 +29,21 @@ def sessionWord():
     session['wordLen']=session['total'][1]
 
 @app.route('/')
-def home():
-    sessionData()
-    sessionWord()
-    persistData()
-    return render_template('index.html',my_len=session['wordLen'])
+@app.route('/<cover>',methods=['GET'])
+def home(cover=None):
+    if cover=='sessionCover':
+        sessionWord()
+        sessionData()
+        return render_template('index.html',my_len=session['wordLen'])
+    elif cover==None:
+        persistData()
+        sessionData()
+        sessionWord()
+        return render_template('index.html',my_len=session['wordLen'])
+    else:
+        abort(404)
 
-@app.route('/<guess>')
+@app.route('/guess/<guess>')
 def guess(guess):
     guess=chr(int(guess)+96)
     locations=[]
@@ -49,8 +57,12 @@ def guess(guess):
     if session['correct']==session['wordLen']:
         session['finished']=True
         session['wins']+=1
+        session['totGames']+=1
+    if session['guesses']==10:
+        session['finished']=True
+        session['totGames']+=1
     sessionJSON={'inside':inside,'locations':locations,'correct':session['correct'],
             'guesses':session['guesses'],'finished':session['finished'],
-            'wins':session['wins']}
+            'wins':session['wins'],'totGames':session['totGames']}
     return jsonify(sessionJSON)
 app.run(host='0.0.0.0')
