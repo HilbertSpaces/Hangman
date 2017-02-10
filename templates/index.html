@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="../static/css/style.css?version=0" media="all">
+<link rel="stylesheet" href="../static/css/style.css?version=11" media="all">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
-<script src="../static/js/app.js?version=a16" type="text/javascript"></script>
+<script src="../static/js/app.js?version=a45" type="text/javascript"></script>
 <head>
 	<meta charset="UTF-8">
 	<title>Hangman</title>
@@ -51,9 +51,14 @@
 			<td id="letter_26" class="letters">Z</td>
 		</tr>
 	</table>
+	<p><span id="wins"></span></p>
+	<p><span id="losses"></span></p>
 	</div>
 	{% for n in range(my_len) %}
 	<hr id="{{n}}"></hr>
+	{% endfor %}
+	{% for n in range(10) %}
+	<img id="image_{{n+1}}" src="../static/images/hangman{{n+1}}.JPG" style="display:none;"/>
 	{% endfor %}
 </body>
 </html>

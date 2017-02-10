@@ -11,6 +11,8 @@ def genWord(wordArr):
     wordArrLen=len(wordArr)-1
     word_index=randint(0,wordArrLen)
     word=wordArr[word_index]
+    if '\'' in word:
+        genWord()
     wordLen=len(word)
     return word,wordLen
 
@@ -22,6 +24,7 @@ def sessionData():
     session['correct']=0
     session['guesses']=0
     session['finished']=False
+    session['totalCorrect']=0
 
 def sessionWord():
     session['total']=genWord(wordArr)
@@ -49,16 +52,20 @@ def guess(guess):
     locations=[]
     inside=False
     session['guesses']+=1
+    correctOnce=False
     for i in range(session['wordLen']):
         if guess==session['word'][i]:
             inside=True
-            session['correct']+=1
+            session['totalCorrect']+=1
+            if not correctOnce:
+                session['correct']+=1
+                correctOnce=True
             locations.append(i)
-    if session['correct']==session['wordLen']:
+    if session['totalCorrect']==session['wordLen']:
         session['finished']=True
         session['wins']+=1
         session['totGames']+=1
-    if session['guesses']==10:
+    elif session['guesses']-session['correct']==10:
         session['finished']=True
         session['totGames']+=1
     sessionJSON={'inside':inside,'locations':locations,'correct':session['correct'],

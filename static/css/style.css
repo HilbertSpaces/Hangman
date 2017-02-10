@@ -1,23 +1,29 @@
 body{
 	background:#673ab7;
 }
+img{
+	position:absolute;
+	display:block;
+	height:700px;
+	top:250px;
+}
 h1 {
 	position:relative;
-	left:350px;
+	left:460px;
 	font-size:80px;
 	font-family:Barrio;
+	color:salmon;
 }
 hr {
-    font-size:25px;
+    font-size:55px;
     text-align:center;
     color:lightcoral;
     display: inline-block;
     height: 1px;
     border: 0;
-    width:43px;
+    width:85px;
     border-bottom: 2px solid lightblue;
     margin: 1em 0;
-    color:black;
     margin-top:30px;
 }
 .right_column {
@@ -27,8 +33,9 @@ hr {
 	top:200px;
 }
 caption{
+	font-size:50px;
 	font:bold;
-	font-size:30px;
+	font-size:50px;
 	font-family:Barrio;
 }
 table {
@@ -46,4 +53,9 @@ td:hover{
 svg {
 	width:1250px;
 	height:790px;
+}
+p{
+	font-size:50px;
+	color:salmon;
+	font-family:Barrio;
 }
