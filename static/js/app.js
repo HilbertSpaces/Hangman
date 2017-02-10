@@ -22,9 +22,6 @@ $(document).ready(function(){
 			//if guess isn't in word then show a new hangman image
 			$('#wins').text('Wins: '+wins.toString());
 			$('#losses').text('Losses: '+losses.toString());
-			console.log(guesses);
-			console.log(correct);
-			console.log(inside);
 			if(inside){
 				//iterate over all locations of guessed Letter
 				for(var loc=0;loc<locLength;loc++){
