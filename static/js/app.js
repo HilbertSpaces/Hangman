@@ -37,11 +37,11 @@ $(document).ready(function(){
 			}
 			setTimeout(function (){ ;
 				if(finished && wrong<10){
-					alert('You Won! Your record is: '+wins.toString()+'wins and'+losses.toString()+' losses');
+					alert('You Won! Your record is: '+wins.toString()+' wins and '+losses.toString()+' losses');
 					window.location='/sessionCover'
 				}
 				else if(finished){
-					alert('There\'s always next time! Your record is: '+wins.toString()+'wins and'+losses.toString()+' losses');
+					alert('There\'s always next time! Your record is: '+wins.toString()+' wins and '+losses.toString()+' losses');
 					window.location='/sessionCover'
 				}
 
