@@ -5,9 +5,11 @@ import string
 PRESERVE_CONTEXT_ON_EXCEPTION = False
 
 class ServerTests(unittest.TestCase):
+
 ##########################################################
-    #test the word generation function to make sure
-    #words with apostrophes are never used
+#test the word generation function to make sure
+#words with apostrophes are never used
+
     def test_word_generation(self):
         word_array = ['don\'t','won\'t','hello']
         word = genWord(word_array)
@@ -32,6 +34,7 @@ class ServerTests(unittest.TestCase):
 
     def test_logic(self):
         with app.test_client() as c:
+
 #get home route to create the session objects
 
             response = c.get('/')
@@ -54,12 +57,12 @@ class ServerTests(unittest.TestCase):
                 self.assertEqual(session['guesses'],1)
                 self.assertEqual(session['correct'],1)
 
-            #guess 'a' (wrong)
+#guess 'a' (wrong)
             response = c.get('/guess/1')
             with c.session_transaction() as session:
                 self.assertEqual(session['guesses'],2)
                 self.assertEqual(session['correct'],1)
-##########################################################
+
 # test one full json response, guess 'l'
 
             response = c.get('/guess/12')
@@ -68,12 +71,15 @@ class ServerTests(unittest.TestCase):
                 locations = [2,3],correct = 2,guesses = 3,
                 finished = False,wins = 0,totGames = 0
                 ))
-##########################################################
+
+#finish the game and test wins and totGames correctness
 
             response = c.get('/guess/8')
             response = c.get('/guess/15')
             with c.session_transaction() as session:
                 self.assertEqual(session['wins'],1)
                 self.assertEqual(session['totGames'],1)
+
+##########################################################
 
 unittest.main()
