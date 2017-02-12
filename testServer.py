@@ -79,6 +79,7 @@ class ServerTests(unittest.TestCase):
             with c.session_transaction() as session:
                 self.assertEqual(session['wins'],1)
                 self.assertEqual(session['totGames'],1)
+                self.assertEqual(session['finished'],True)
 
 ##########################################################
 
