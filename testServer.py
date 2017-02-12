@@ -32,7 +32,8 @@ class ServerTests(unittest.TestCase):
 
     def test_logic(self):
         with app.test_client() as c:
-            #get home route to create the session objects
+#get home route to create the session objects
+
             response = c.get('/')
             '''check session objects and set our word to hello
             for effective testing
@@ -45,8 +46,9 @@ class ServerTests(unittest.TestCase):
                 self.assertEqual(session['wins'],0)
                 self.assertEqual(session['guesses'],0)
 
-            #!!!make some guesses against hello!!!
-            #guess 'e' (correct)
+#!!!make some guesses against hello!!!
+#guess 'e' (correct)
+
             response = c.get('/guess/5')
             with c.session_transaction() as session:
                 self.assertEqual(session['guesses'],1)
