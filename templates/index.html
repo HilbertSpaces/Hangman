@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="../static/css/style.css?version=30" media="all">
+<link rel="stylesheet" href="../static/css/style.css?version=57" media="all">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
-<script src="../static/js/app.js?version=a60" type="text/javascript"></script>
+<script src="../static/js/app.js?version=a97" type="text/javascript"></script>
 <head>
 	<meta charset="UTF-8">
 	<title>Hangman</title>
@@ -13,46 +13,49 @@
 	<svg></svg>
 	<div></div>
 	<div class="right_column">
-	<table>
-		<caption>Letter Guess</caption>
-		<tr>
-			<td id="letter_1" class="letters">A</td>
-			<td id="letter_2" class="letters">B</td>
-			<td id="letter_3" class="letters">C</td>
-			<td id="letter_4" class="letters">D</td>
-			<td id="letter_5" class="letters">E</td>
-			<td id="letter_6" class="letters">F</td>
-			<td id="letter_7" class="letters">G</td>
+		<table>
+			<caption>Letter Guess</caption>
+			<tr>
+				<td id="letter_1" class="letters">A</td>
+				<td id="letter_2" class="letters">B</td>
+				<td id="letter_3" class="letters">C</td>
+				<td id="letter_4" class="letters">D</td>
+				<td id="letter_5" class="letters">E</td>
+				<td id="letter_6" class="letters">F</td>
+				<td id="letter_7" class="letters">G</td>
 
-		</tr>
-		<tr>
-			<td id="letter_8" class="letters">H</td>
-			<td id="letter_9" class="letters">I</td>
-			<td id="letter_10" class="letters">J</td>
-			<td id="letter_11" class="letters">K</td>
-			<td id="letter_12" class="letters">L</td>
-			<td id="letter_13" class="letters">M</td>
-			<td id="letter_14" class="letters">N</td>
-		</tr>
-		<tr>
-			<td id="letter_15" class="letters">O</td>
-			<td id="letter_16" class="letters">P</td>
-			<td id="letter_17" class="letters">Q</td>
-			<td id="letter_18" class="letters">R</td>
-			<td id="letter_19" class="letters">S</td>
-			<td id="letter_20" class="letters">T</td>
-			<td id="letter_21" class="letters">U</td>
-		</tr>
-		<tr>
-			<td id="letter_22" class="letters">V</td>
-			<td id="letter_23" class="letters">W</td>
-			<td id="letter_24" class="letters">X</td>
-			<td id="letter_25" class="letters">Y</td>
-			<td id="letter_26" class="letters">Z</td>
-		</tr>
-	</table>
-	<p><span id="wins"></span></p>
-	<p><span id="losses"></span></p>
+			</tr>
+			<tr>
+				<td id="letter_8" class="letters">H</td>
+				<td id="letter_9" class="letters">I</td>
+				<td id="letter_10" class="letters">J</td>
+				<td id="letter_11" class="letters">K</td>
+				<td id="letter_12" class="letters">L</td>
+				<td id="letter_13" class="letters">M</td>
+				<td id="letter_14" class="letters">N</td>
+			</tr>
+			<tr>
+				<td id="letter_15" class="letters">O</td>
+				<td id="letter_16" class="letters">P</td>
+				<td id="letter_17" class="letters">Q</td>
+				<td id="letter_18" class="letters">R</td>
+				<td id="letter_19" class="letters">S</td>
+				<td id="letter_20" class="letters">T</td>
+				<td id="letter_21" class="letters">U</td>
+			</tr>
+			<tr>
+				<td id="letter_22" class="letters">V</td>
+				<td id="letter_23" class="letters">W</td>
+				<td id="letter_24" class="letters">X</td>
+				<td id="letter_25" class="letters">Y</td>
+				<td id="letter_26" class="letters">Z</td>
+			</tr>
+		</table>
+		<p><span id="wins">Wins: </span></p>
+		<p><span id="losses">Losses: </span></p>
+		<a href="#" class="button">
+			<span>Play Again</span>
+		</a>
 	</div>
 	{% for n in range(my_len) %}
 	<h2 id="{{n}}"></h2>

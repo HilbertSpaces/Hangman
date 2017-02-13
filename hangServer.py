@@ -23,6 +23,7 @@ def sessionData():
     session['guesses'] = 0
     session['finished'] = False
     session['totalCorrect'] = 0
+    session['guessList'] = []
 
 def sessionWord():
     session['total'] = genWord(wordArr)
@@ -47,10 +48,15 @@ def home(cover=None):
 @app.route('/guess/<guess>')
 def guess(guess):
     guess=chr(int(guess)+96)
+    if guess in session['guessList']:
+        return ('',204)
+    else:
+        session['guessList'].append(guess)
     locations = []
     inside=False
     session['guesses'] += 1
     correctOnce=False
+    wordFiller = {}
     for i in range(session['wordLen']):
         if guess == session['word'][i]:
             inside = True
@@ -66,7 +72,16 @@ def guess(guess):
     elif session['guesses']-session['correct'] == 10:
         session['finished'] = True
         session['totGames'] += 1
+        wordFiller = {}
+        word=session['word']
+        for char in range(session['wordLen']):
+            if (word[char] not in session['guessList'] and 
+                    word[char] not in wordFiller):
+                wordFiller[word[char]] = [char]
+            elif word[char] not in session['guessList']:
+                wordFiller[word[char]].append(char)
     sessionJSON = {'inside':inside,'locations':locations,
+            'wordFiller':wordFiller,
             'correct':session['correct'],
             'guesses':session['guesses'],
             'finished':session['finished'],
