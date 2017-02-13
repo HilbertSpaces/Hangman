@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	var streak=false;
 	$('.button').on('click',function(){
 		window.location='/sessionCover'
 	});
@@ -37,27 +38,22 @@ $(document).ready(function(){
 				console.log('#image_'+wrong.toString())
 					document.getElementById('image_'+wrong.toString()).style.display='block';
 			}
-			setTimeout(function (){ 
-				if(finished && wrong<10){
-					alert('You Won! Your record is: '+wins.toString()+' wins and '+losses.toString()+' losses');
-					window.location='/sessionCover'
-				}
-				else if(finished){
-					console.log(wordFiller);
-					for(var chr in wordFiller){
-						var locations=wordFiller[chr];
-						var length=locations.length;
-						for(var index=0; index<length;index++){
-							$('#'+(locations[index]).toString()).text(chr.toUpperCase());
-							$('#'+(locations[index]).toString()).addClass('red');
-						}
+			if(finished && wrong<10){
+				$('#congrats').text('Good Job, Keep it Going!');
+			}
+			else if(finished){
+				console.log(wordFiller);
+				for(var chr in wordFiller){
+					var locations=wordFiller[chr];
+					var length=locations.length;
+					for(var index=0; index<length;index++){
+						$('#'+(locations[index]).toString()).text(chr.toUpperCase());
+						$('#'+(locations[index]).toString()).addClass('red');
 					}
-					setTimeout(function(){
-						alert('There\'s always next time! Your record is: '+wins.toString()+' wins and '+losses.toString()+' losses');
-						window.location='/sessionCover'
-					},100000);
 				}
-			}, 900);
+				$('#sorry').text('Retry by Clicking Play Again!');
+				streak=false
+			}
 		});
 	});
 });
